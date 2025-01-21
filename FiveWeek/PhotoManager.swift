@@ -13,11 +13,11 @@ class PhotoManager {
     
     private init() {}
     
-    func getRandomPhoto() {
+    func getRandomPhoto(completionHandler: @escaping (RandomPhoto) -> ()) {
         let url = "https://api.unsplash.com/photos/random"
         
         let header: HTTPHeaders = [
-            "Authorization": "Client-ID \(Key.unsplash)"
+            "Authorization": "Client-ID \(Key.unplash)"
         ]
         
         AF.request(url, method: .get, headers: header)
@@ -26,13 +26,12 @@ class PhotoManager {
                 
                 switch response.result {
                 case .success(let value):
-                    print(value)
+                    completionHandler(value)
                 case .failure(let error):
                     print(error)
                 }
             }
     }
-    
     
     
 }

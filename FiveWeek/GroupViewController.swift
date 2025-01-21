@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class GroupViewController: UIViewController {
     
@@ -33,7 +34,10 @@ class GroupViewController: UIViewController {
         btn.backgroundColor = .green
         return btn
     }()
-    
+    //링크만 담을 곳
+    var firstValue = ""
+    var secondValue = ""
+    var thirdValue = ""
     
     
     override func viewDidLoad() {
@@ -80,5 +84,37 @@ class GroupViewController: UIViewController {
     func checkButtontapped() {
         print(#function)
         
+        let group = DispatchGroup()
+        
+        
+        
+        
+        group.enter()
+        PhotoManager.shared.getRandomPhoto { photo in
+            //print(photo.urls.thumb) // kf.setImage
+            self.firstValue = photo.urls.thumb
+            group.leave()
+        }
+        
+        group.enter()
+        PhotoManager.shared.getRandomPhoto { photo in
+            self.secondValue = photo.urls.thumb
+            group.leave()
+        }
+        
+        group.enter()
+        PhotoManager.shared.getRandomPhoto { photo in
+            self.thirdValue = photo.urls.thumb
+            group.leave()
+        }
+        // 누가 먼저 끝나는지는 핸들링 할 수는 없음 그래도 셋다 끝난 시점을 알 수 있다 !
+        // 뷰 갱신이 보통 들어가게 되는데 일반적으로 queue부분에 Main을 넣어준다 !
+        group.notify(queue: .main) {
+            print("끝") // -> true일 경우 메인에서 동작중
+            self.firstImageview.kf.setImage(with: URL(string: self.firstValue))
+            self.secondImageview.kf.setImage(with: URL(string: self.secondValue))
+            self.thirdImageview.kf.setImage(with: URL(string: self.thirdValue))
+            
+        }
     }
 }
