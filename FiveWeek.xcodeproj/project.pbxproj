@@ -10,10 +10,12 @@
 		4D7BF5012D3DD71B003B8BC3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4D7BF5002D3DD71B003B8BC3 /* Kingfisher */; };
 		4D7BF5042D3DD724003B8BC3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4D7BF5032D3DD724003B8BC3 /* Alamofire */; };
 		4D7BF5072D3DD72D003B8BC3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D7BF5062D3DD72D003B8BC3 /* SnapKit */; };
+		4D832A952D3F233F002B5CD8 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4D832A942D3F233F002B5CD8 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D7BF4E72D3DD4EA003B8BC3 /* FiveWeek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiveWeek.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D832A942D3F233F002B5CD8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -54,6 +56,7 @@
 		4D7BF4DE2D3DD4EA003B8BC3 = {
 			isa = PBXGroup;
 			children = (
+				4D832A942D3F233F002B5CD8 /* .gitignore */,
 				4D7BF4E92D3DD4EA003B8BC3 /* FiveWeek */,
 				4D7BF4E82D3DD4EA003B8BC3 /* Products */,
 			);
@@ -139,6 +142,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D832A952D3F233F002B5CD8 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

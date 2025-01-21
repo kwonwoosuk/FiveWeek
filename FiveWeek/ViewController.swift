@@ -58,9 +58,9 @@ class ViewController: UIViewController {
         print(#function)
         //serialSync()
         //serialASync()
-        //concurrentSync()
+        concurrentSync()
         //concurrentAsync()
-        example2()
+//        example2()
         configureView()
     }
     
