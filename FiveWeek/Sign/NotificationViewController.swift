@@ -44,6 +44,7 @@ class NotificationViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name("Jack"),
                                         object: nil,
                                         userInfo: ["nickname":"나야", "value": textField.text!])
+        
         navigationController?.popViewController(animated: true)
     }
     

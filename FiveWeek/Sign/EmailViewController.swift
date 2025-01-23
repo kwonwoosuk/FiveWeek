@@ -8,10 +8,10 @@
 import UIKit
 import SnapKit
 
-class EmailViewController: UIViewController {
+final class EmailViewController: UIViewController {
    
-    let emailTextField = SignTextField(placeholderText: "이메일을 입력해주세요")
-    let nextButton = PointButton(title: "다음")
+    private let emailTextField = SignTextField(placeholderText: "이메일을 입력해주세요")
+    private let nextButton = PointButton(title: "다음")
      
     override func viewDidLoad() {
         super.viewDidLoad()

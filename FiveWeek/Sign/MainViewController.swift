@@ -8,11 +8,18 @@
 import UIKit
 import SnapKit
 
+protocol PassDataDelegate {
+    func nicknameReceived(value: String)
+}
+
+
+
+
 class MainViewController: UIViewController {
-   
+    
     let statusLabel = UILabel()
     let nextButton = PointButton(title: "처음으로")
-     
+    
     let profileButton = PointButton(title: "프로필")
     
     
@@ -20,21 +27,66 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
         
         configureLayout()
-         
+        
         nextButton.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
-        profileButton.addTarget(self, action: #selector(profileButtonClicked), for: .touchUpInside)
+        profileButton.addTarget(self, action: #selector(closureButtonClicked), for: .touchUpInside)
+        
+        
+        
         NotificationCenter.default.addObserver(self, // 관찰자 추가
                                                selector: #selector(jackReceivedNotification), // 밑에꺼 받으면 실행할 구문!
                                                name:NSNotification.Name("Jack"), // 어떤신호를 받을건데? "jack"이라는 이름 가진애 받을거야
                                                object: nil)
+    }
+    
+    
+    
+    @objc
+    func delgateButtonClicked() {
         
-        // Notification
+        let vc = DelegateViewController()
+        vc.contents = self // mainViewController
+        navigationController?.pushViewController(vc, animated: true)
+    }
+        
+    @objc
+    func closureButtonClicked() { // ⭐️
+        let vc = PracticeViewController()
+        
+//        func contents(value: String) {
+//            print("TEST")
+//            self.statusLabel.textColor = .blue
+//            self.statusLabel.text = value
+//        }
+        
+//        vc.contents = { value in //  ->  value ==  TextField.text
+//            print("TEST")
+//            self.statusLabel.textColor = .blue
+//            self.statusLabel.text = value
+//        }
+        vc.textField.text = statusLabel.text
+        vc.contents = { value in
+            self.statusLabel.textColor = .red
+            self.statusLabel.text = value
+        }
+        
+        
+        
+        navigationController?.pushViewController(vc, animated: true)
         
     }
+    
+    
+    
+    func sample() {
+        print("TEST")
+        statusLabel.textColor = .blue
+    }
+    
     
     @objc
     func jackReceivedNotification(value: NSNotification) {
@@ -46,8 +98,7 @@ class MainViewController: UIViewController {
         } else {
             statusLabel.text = "데이터 안옴"
         }
-        
-        
+         
     }
     
     
@@ -65,6 +116,7 @@ class MainViewController: UIViewController {
         
         
         let vc = NotificationViewController()
+        
         navigationController?.pushViewController(vc, animated: true)
         
         
@@ -121,3 +173,12 @@ class MainViewController: UIViewController {
 
 }
 
+extension MainViewController: PassDataDelegate {
+    func nicknameReceived(value: String) {
+        print(#function)
+        statusLabel.textColor = .red
+        statusLabel.text = value
+    }
+    
+    
+}
