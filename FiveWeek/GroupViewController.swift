@@ -42,7 +42,65 @@ class GroupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        PhotoManager.shared.getAPhoto(id: "yd4daZHEtcA")
+    
+    // 매개변수에 T타입 명시 - T.Type (메타 타입)
+        PhotoManager.shared.example2(api: .randomPhoto, type: RandomPhoto.self) { value in
+            print("통신성공")
+            dump(value)
+        } failHandler: {
+            print("통신 실패")
+        }
+
+        
+        
+        let a = plus(a: 3, b: 2)
+       // let b = plus(a: "3", b: "2")
+        
+        Dummy(mainContents: 67, subContents: 67, others: 67)
+        Dummy(mainContents: "2", subContents: "12", others: 7)
+        
+        PhotoManager.shared.example(api: .randomPhoto) { (value: RandomPhoto) in
+            print("통신 성공")
+            dump(value)
+        } failHandler: {
+            print("통신 실패한 경우 얼럿")
+        }
+        
+        // 타입어노테이션으로 타입 명시 - 첫번째 방법
+        PhotoManager.shared.example(api: .topic(id: "wallpapers")) { (value: Topic) in
+            print("통신 성공")
+            dump(value)
+        } failHandler: {
+            print("통신 실패한 경우 얼럿")
+        }
+
+        var age: Int = 3
+        var name: String = "고래밥"
+        var test: String.Type = String.self
+        
+        
+        
+        
+
+        var number = Int.random(in: 1...3)
+        
+        switch number {
+        case 1: print("")
+        case 2: print("")
+        case 3: print("")
+        default:
+            break
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
 //        PhotoManager.shared.getATopic(id: "wallpapers")
         PhotoManager.shared.callRequest(api: .randomPhoto)
         PhotoManager.shared.callRequest(api: .photo(query: "yd4daZHEtcA"))
@@ -87,6 +145,9 @@ class GroupViewController: UIViewController {
     @objc
     func checkButtontapped() {
         print(#function)
+        let vc = SearchViewController()
+        navigationController?.pushViewController(vc, animated: true)
+//        becomeFirstResponder()
         
 //        let group = DispatchGroup()
 //        
