@@ -7,6 +7,11 @@
 
 import UIKit
 
+extension NSNotification.Name {
+    static let sesac = NSNotification.Name("sesac")
+}
+
+
 class NotificationViewController: UIViewController {
     
     let textField = SignTextField(placeholderText: "노티피케이션을 통한 값전달")
